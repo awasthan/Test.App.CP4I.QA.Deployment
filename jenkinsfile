@@ -9,8 +9,7 @@ wrap([$class: 'Xvfb']) {
  	 checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-github', url: 'https://github.com/awasthan/Test.App.CP4I.QA.Deployment.git']]]) 
 	}
 	stage ('Test.App.CP4I.QA.Deployment - Build') {
- 	
-artifactResolver artifacts: [artifact(artifactId: '${ACE_APP1}', extension: 'zip', groupId: 'com.ibm.esb', version: '${ACE_APP1_VERSION}'), artifact(artifactId: '${ACE_APP2}', extension: 'zip', groupId: 'com.ibm.esb', version: '${ACE_APP2_VERSION}')], targetDirectory: '/var/icp-builds/${ACE_APP1}'
+artifactResolver artifacts: [artifact(artifactId: '${ACE_APP1}', extension: 'zip', groupId: 'com.ibm.esb', version: '${ACE_APP1_VERSION}'), artifact(artifactId: '${ACE_APP2}', extension: 'zip', groupId: 'com.ibm.esb', version: '${ACE_APP2_VERSION}')], targetDirectory: '/var/icp-builds/${ACE_APP1}' 	
 sh label: '', script: '''#!/bin/sh
 cd /var/icp-builds/${ACE_APP1}
 unzip ${ACE_APP1}-${ACE_APP1_VERSION}.zip
