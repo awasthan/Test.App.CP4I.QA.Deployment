@@ -24,9 +24,9 @@ cloudctl login -a ${ICP_CONSOLE_URL} -n ${Namespace} -u ${CP4I_User} -p ${CP4I_P
 oc project ${Namespace}
 docker login cp.icr.io -u ${ICR_USER} -p ${ICR_PASSWORD}
 docker build -t ${imagename}:${BUILD_NUMBER} .
-docker tag ${imagename}:${BUILD_NUMBER} ${targetrepo}/${imagename}:${tag}-amd64
+docker tag ${imagename}:${BUILD_NUMBER} ${OCP_Registry_External_URL}/${Namespace}/${imagename}:${tag}-amd64
 docker login ${OCP_Registry_External_URL} -u $(oc whoami) -p $(oc whoami -t)
-docker push ${targetrepo}/${imagename}:${tag}-amd64
+docker push ${OCP_Registry_External_URL}/${Namespace}/${imagename}:${tag}-amd64
 source /etc/profile
 cd /opt/certs
 helm init --client-only
