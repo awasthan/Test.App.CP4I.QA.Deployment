@@ -19,8 +19,8 @@ unzip ${ACE_APP2}-${ACE_APP2_VERSION}.zip
 chmod 777 *
 cp ${ACE_APP2}_QA_${ACE_APP2_VERSION}.bar /var/lib/jenkins/jobs/${JOB_NAME}/workspace
 cd ${WORKSPACE}
-#oc login ${OCP_API_URL} -u admin -p ${REGISTRY_PASSWORD} --insecure-skip-tls-verify
-cloudctl login -a ${ICP_CONSOLE_URL} -n ${Namespace} -u ${CP4I_User} -p ${CP4I_Password} –-skip-ssl-validation
+oc login ${OCP_API_URL} -u ${OCP_USER} -p ${OCP_PASSWORD} --insecure-skip-tls-verify
+#cloudctl login -a ${ICP_CONSOLE_URL} -n ${Namespace} -u ${CP4I_User} -p ${CP4I_Password} –-skip-ssl-validation
 oc project ${Namespace}
 docker login cp.icr.io -u ${ICR_USER} -p ${ICR_PASSWORD}
 docker build -t ${imagename}:${BUILD_NUMBER} .
